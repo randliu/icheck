@@ -30,6 +30,7 @@ pkg_info=None
 
 #base_dir="C:\\test\\"
 work_dir = "%s\\..\\apk_space"%os.path.dirname(__file__)
+work_dir = os.path.abspath(work_dir)
 print "work_dir:"+work_dir
 basic_info['work_dir']=work_dir
 pkg_type=""
@@ -71,7 +72,7 @@ class TestApp(wx.App):
         #self.TestFrame.LongRunning(basic_info['full_name'],basic_info['work_dir'])
         self.TestFrame.LongRunning(basic_info)
         self.SetTopWindow(self.TestFrame)
-        time.sleep(3)
+        time.sleep(1)
         parse_AndroidManifest_xml(pkg_info['path_AndroidManifest_xml'])
         parse_strings_xml(pkg_info['path_string_xml'])
         
@@ -85,11 +86,22 @@ class TestApp(wx.App):
         html =  "%s\\..\\Report\\out.html"%os.path.dirname(__file__)
         print html
         webbrowser.open(html)
-        self.TestFrame.Destroy()
-        wx.GetApp().ExitMainLoop()
+        #self.TestFrame.StartButton.en
+        #self.TestFrame.Destroy()
+        #wx.GetApp().ExitMainLoop()
         return True
 
 
+
+def count_file_size(path):
+    file_size=os.path.getsize(full_name)
+    unit = "K"
+    file_size = file_size>>10   # as K
+
+    if file_size > 1024:
+        file_size =file_size >>10
+        unit = "M"    
+    return (file_size,unit)
 
 def main():
     (result,info) = valid_arg()
@@ -107,13 +119,7 @@ def main():
     print work_dir
     basic_info['pkg_name'] = pkg_name
     #basic_info['work_dir'] = work_dir
-    file_size=os.path.getsize(full_name)
-    unit = "K"
-    file_size = file_size>>10   # as K
-
-    if file_size > 1024:
-        file_size =file_size >>10
-        unit = "M"    
+    file_size,unit=count_file_size(full_name)
     basic_info['file_size'] = "%d%s"%(file_size,unit)
 
 

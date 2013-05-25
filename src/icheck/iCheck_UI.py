@@ -8,24 +8,33 @@ import time
 class LogFrame(wx.Frame):
     def __init__(self):
         self.content=""
-        wx.Frame.__init__(self, parent = None, id = -1, title = "iCheck it!", pos=(350, 110), size=(450,600), style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.MINIMIZE_BOX)
+        wx.Frame.__init__(self, parent = None, id = -1, title = "iCheck it!", pos=(250, 50), size=(460,600), style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.MINIMIZE_BOX)
         panel = wx.Panel(self)
 
-        #self.StartButton = wx.Button(parent = panel, id = -1, label = "Start", pos = (110, 17), size = (50, 20))
-        self.MultiLine = wx.TextCtrl(parent = panel, id = -1, pos = (20, 50), size = (410, 500), style = wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_AUTO_URL)
+        self.StartButton = wx.Button(parent = panel, id = -1, label = "Open Dir", pos = (380, 540), size = (60, 20))
+        self.MultiLine = wx.TextCtrl(parent = panel, id = -1, pos = (20, 20), size = (410, 500), style = wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_AUTO_URL)
 
-        #self.Bind(wx.EVT_BUTTON, self.OnStart, self.StartButton)
+        self.Bind(wx.EVT_BUTTON, self.on_open, self.StartButton)
         #self.LongRunning()
+        self.StartButton.Disable()
 
-
+    def on_open(self,event):
+        print "event:"+str(event)
+        cmd = "start "+ self.basic_info['work_dir']
+        print cmd
+        os.system(cmd)
+        #pass
     def write_log(self,msg):
         self.MultiLine.AppendText(msg)
         self.ScrollLines(1)
         wx.Yield()
         
     def LongRunning(self,basic_info):
+        self.basic_info=basic_info
+        #global basic_info
         Counter = 1
         full_name=basic_info['full_name']
+        
         work_dir=basic_info['work_dir']
         
         import subprocess
@@ -60,6 +69,7 @@ class LogFrame(wx.Frame):
         #wx.App.ExitMainLoop(wx.GetApp())
         html =  "%s\Report\out.html"%os.path.dirname(__file__)
         time.sleep(1)
+        self.StartButton.Enable()
         #self.Destroy()
         #wx.GetApp().ExitMainLoop()
         #proc.wait()
