@@ -40,7 +40,7 @@ class LogFrame(wx.Frame):
         full_name = os.path.abspath(full_name)
         work_dir = os.path.abspath(work_dir)
         cmd="java -jar %s  d -f %s %s\n\n"%(apktool_full_path,full_name,work_dir)
-        time.sleep(2)
+        #time.sleep(2)
         print cmd
         self.write_log(cmd)
         proc = subprocess.Popen(cmd,shell=True,stderr=subprocess.PIPE)

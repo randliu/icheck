@@ -12,6 +12,8 @@ from iCheck_UI import *
 
 basic_info={}
 msg=u"请指定一个.apk文件"
+strings={}
+
 import codecs
 
 import thread
@@ -72,6 +74,9 @@ class TestApp(wx.App):
         time.sleep(3)
         parse_AndroidManifest_xml(pkg_info['path_AndroidManifest_xml'])
         parse_strings_xml(pkg_info['path_string_xml'])
+        
+        pkg_info['app_name']= get_strings_value(u'app_name')
+
         
         render()
         print pkg_info
@@ -213,6 +218,7 @@ def parse_strings_xml(path_string_xml):
     resources = axml.documentElement
     #print resources.nodeName
     lst_string =  resources.getElementsByTagName("string")
+    global strings
     for node in lst_string:
         print node 
         #print "Element text:%s"% get_text(node)            
@@ -222,12 +228,22 @@ def parse_strings_xml(path_string_xml):
                 print '    Attr -- Name: %s  Value: %s' % (name, value)
                 #name,value = node.attributes.items()
                 #if string.strip(value,' ') == "app_name":
-                
+                """
                 if value == "app_name":
                     pkg_info['app_name']=get_text(node)
                     print "app_name:%s"%pkg_info['app_name']
                     return True
+                """
+                strings[value]=get_text(node)
+                """
+                if value == "app_name":
+                    pkg_info['app_name']=strings['app_name']
+                    print "app_name:%s"%pkg_info['app_name']
+                    #return True
+                """
     print pkg_info
+    print "strings:"+str(strings)
+    
     return False
 
 
@@ -249,6 +265,17 @@ def getTitles(xml):
                 print node.data
         """
         print get_text(title)
+        
+def get_strings_value(value):
+    global strings
+    
+    ret="NA"
+    try:
+        ret=strings[value]
+    except:
+        pass
+    
+    return ret
 def render():
 
     global basic_info
