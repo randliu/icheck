@@ -1,0 +1,231 @@
+
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{{pkg.app_name}} - iCheck {{now}}</title>
+<link rel="stylesheet" type="text/css" href="res/invoicestyle.css">
+</head>
+<body bgcolor="#efefef">
+
+
+<table id="wrapper" cellspacing="1" cellpadding="10" bgcolor="#cccccc" align="center"><tr><td bgcolor="#ffffff">
+
+<table width="100%"><tr><td width="50%">
+
+<p><img src="res/iCheck.jpg"></p>
+</td><td width="50%" align="center">
+
+<font class="paid">{{pkg.app_name}} - iCheck Report</font><br />
+ <br />
+
+</td></tr></table>
+
+<br />
+<br/>
+
+<strong>基本信息</strong>
+日期: 12/21/2012
+<table cellspacing="0" id="invoiceitemstable" align="center">
+	<tr>
+		<td id="invoiceitemsheading" align="center" width="70%" style="border:1px solid #cccccc;border-bottom:0px;">
+			<strong>项目</strong>
+		</td>
+		<td id="invoiceitemsheading" align="center" width="30%" style="border:1px solid #cccccc;border-left:0px;border-bottom:0px;">
+			<strong>信息</strong>
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">App Name</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.app_name}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			文件名</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.file_name}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			路径</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.location}}
+		</td>
+	</tr>
+	
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			文件大小</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.file_size}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			package
+		</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.package}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			android:versionName
+		</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.versionName}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			android:versionCode
+		</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.versionCode}}
+		</td>
+	</tr>
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">
+			android:debuggable
+		</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{pkg.debuggable}}
+		</td>
+	</tr>
+
+	<!--
+	<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;border-bottom:0px;">
+			<div align="right">签名:&nbsp;</div>
+		</td>
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			<strong>¥687.07</strong>
+		</td>
+	</tr>
+	<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;border-bottom:0px;">
+			<div align="right">使用账户余额支付:&nbsp;</div>
+		</td>
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			<strong>¥0.00</strong>
+		</td>
+	</tr>
+	<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp;</div>
+		</td>
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-left:0px;">
+			<strong>¥687.07</strong>
+		</td>
+	</tr>
+	-->
+		<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp;</div>
+		</td>
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-left:0px;">
+			<strong>8项</strong>
+		</td>
+	</tr>
+	
+</table>
+<p>  </p>
+<strong>uses-permission</strong>
+
+<table cellspacing="0" id="invoiceitemstable" align="center">
+	<tr>
+		<td id="invoiceitemsheading" align="center" width="100%" style="border:1px solid #cccccc;border-bottom:0px;">
+			<strong>uses-permission</strong>
+	</tr>
+	{% for perm in pkg.lst_uses_permission %}
+	
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">{{perm}}</td>
+	</tr>
+	{% endfor %}
+		<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp;{{pkg.len_lst_uses_permission}} </div>
+		</td>
+		</td>
+	</tr>
+	
+</table>
+<p>  </p>
+<strong>permission</strong>
+
+<table cellspacing="0" id="invoiceitemstable" align="center">
+	<tr>
+		<td id="invoiceitemsheading" align="center" width="70%" style="border:1px solid #cccccc;border-bottom:0px;">
+			<strong>permission</strong>
+		<td id="invoiceitemsheading" align="center" width="30%" style="border:1px solid #cccccc;border-left:0px;border-bottom:0px;">
+			<strong> protectionLevel</strong>
+		</td>
+		</td>
+	</tr>
+	{% for perm in pkg.lst_permission %}
+	
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">{{perm.name}}</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{perm.protectionLevel}}
+		</td>
+	</tr>
+	{% endfor %}
+		<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp; </div>
+		</td>
+		
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-left:0px;">
+			<strong>{{pkg.len_lst_permission }}项</strong>
+		</td>
+	</tr>
+	
+</table>
+
+<p>  </p>
+<strong>uses-feature</strong>
+
+<table cellspacing="0" id="invoiceitemstable" align="center">
+	<tr>
+		<td id="invoiceitemsheading" align="center" width="100%" style="border:1px solid #cccccc;border-bottom:0px;">
+			<strong>uses-feature</strong>
+	</tr>
+	{% for feature in pkg.lst_uses_feature %}
+	
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">{{feature}}</td>
+	</tr>
+	{% endfor %}
+		<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp;{{pkg.len_lst_uses_feature }} </div>
+		</td>
+		</td>
+	</tr>
+	
+</table>
+
+
+
+<!--  
+<p><strong>交易</strong></p>
+
+<table cellspacing="0" id="invoiceitemstable" align="center"><tr><td id="invoiceitemsheading" align="center" width="30%" style="border:1px solid #cccccc"><strong>交易日期</strong></td><td id="invoiceitemsheading" align="center" width="25%" style="border:1px solid #cccccc;border-left:0px;"><strong>网关</strong></td><td id="invoiceitemsheading" align="center" width="25%" style="border:1px solid #cccccc;border-left:0px;"><strong>交易编号</strong></td><td id="invoiceitemsheading" align="center" width="20%" style="border:1px solid #cccccc;border-left:0px;"><strong>金额</strong></td></tr>
+<tr bgcolor=#ffffff><td id="invoiceitemsrow" align="center" style="border:1px solid #cccccc;border-top:0px;">12/21/2012</td><td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-left:0px;border-top:0px;">Alipay</td><td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-left:0px;border-top:0px;">2012122120443851</td><td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-left:0px;border-top:0px;">¥687.07</td></tr>
+<tr><td id="invoiceitemsheading" width="30%" style="border:1px solid #cccccc;border-top:0px;" colspan=3><DIV ALIGN="right"><strong>未付金额:&nbsp;</strong></DIV></td><td id="invoiceitemsheading" align="center" width="20%" style="border:1px solid #cccccc;border-left:0px;border-top:0px;"><strong>¥0.00</strong></td></tr>
+</table>
+
+
+<br /><br /><br /><br /><br />
+
+</td></tr></table>
+-->
+
+<p align="center"><!--  <a href="clientarea.php">&laquo; 返回客户区</a> | <a href="dl.php?type=i&amp;id=11395">下载账单</a> | --><a href="javascript:window.close()">关闭窗口</a></p>
+
+</body>
+</html>
