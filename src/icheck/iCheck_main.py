@@ -78,7 +78,8 @@ class TestApp(wx.App):
         
         pkg_info['app_name']= get_strings_value(u'app_name')
 
-        
+        test_if_obfuscated()
+
         render()
         print pkg_info
         
@@ -103,6 +104,27 @@ def count_file_size(path):
         unit = "M"    
     return (file_size,unit)
 
+def test_if_obfuscated():
+    #test by if we can foudn r.smil in package path
+    
+    global pkg_info
+    package = pkg_info['package']
+    ss=string.split(package, ".")
+    inner_path="\\"
+    for s in ss:
+        inner_path=inner_path+s+"\\"
+    inner_path = inner_path +"R.smali"
+    r_dir=pkg_info['work_dir']+"\\"+"smali"+inner_path
+    r_dir=os.path.abspath(r_dir)
+    #shutil.os.
+    print "r_dir:"+r_dir
+    
+    is_exist= os.path.exists(r_dir)
+    ret="NO"
+    if not is_exist:
+        ret="YES"
+    pkg_info['obfuscated']=ret
+    
 def main():
     (result,info) = valid_arg()
     if not result:
@@ -135,7 +157,6 @@ def main():
     pkg_info=basic_info.copy()
     pkg_info['path_AndroidManifest_xml'] =path_AndroidManifest_xml
     pkg_info['path_string_xml'] =path_string_xml
-    
     
     
     App = TestApp(redirect = False)
