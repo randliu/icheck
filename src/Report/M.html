@@ -140,6 +140,38 @@
 	</tr>
 	
 </table>
+
+
+
+<strong>NDK</strong>	
+<p/>
+<table cellspacing="0" id="invoiceitemstable" align="center">
+	<tr>
+		<td id="invoiceitemsheading" align="center" width="70%" style="border:1px solid #cccccc;border-bottom:0px;">
+			<strong>文件名</strong>
+		</td>
+		<td id="invoiceitemsheading" align="center" width="30%" style="border:1px solid #cccccc;border-left:0px;border-bottom:0px;">
+			<strong>大小</strong>
+		</td>
+	</tr>
+	{% for so in pkg.lst_so %}
+	<tr bgcolor=#ffffff>
+		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">{{so.name}}</td>
+		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+			{{so.size}}
+		</td>
+	</tr>
+	{% endfor %}
+	<tr>
+		<td id="invoiceitemsheading" style="border:1px solid #cccccc;">
+			<div align="right">合计:&nbsp; </div>
+		</td>
+		
+		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-left:0px;">
+			<strong>{{pkg.len_lst_so }}项</strong>
+		</td>
+	</tr>
+</table>
 <p>  </p>
 <strong>uses-permission</strong>
 

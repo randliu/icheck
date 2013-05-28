@@ -1,4 +1,4 @@
-c:\Python27\python.exe pyinstaller.py  -p C:\Users\8000\workspace\test\src\lib\; -r C:\Users\8000\workspace\test\src\apktool.jar  C:\Users\8000\workspace\test\src\icheck\iCheck.py 
+c:\Python27\python.exe pyinstaller.py  -p C:\Users\8000\workspace\iCheck\src\lib\; -r C:\Users\8000\workspace\iCheck\src\apktool.jar  C:\Users\8000\workspace\iCheck\src\icheck\iCheck.py 
 C:\Users\8000\workspace\test\src\jar\apktool.jar
 C:\Users\8000\workspace\test\src\Report;C:\Users\8000\workspace\test\src\apk_space; 
 C:\Users\8000\workspace\test\src\lib\jinja2

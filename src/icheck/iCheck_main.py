@@ -79,13 +79,13 @@ class TestApp(wx.App):
         pkg_info['app_name']= get_strings_value(u'app_name')
 
         test_if_obfuscated()
-
+        search_NDK_so()
         render()
         print pkg_info
         
         import webbrowser 
         html =  "%s\\..\\Report\\out.html"%os.path.dirname(__file__)
-        print html
+        #print html
         webbrowser.open(html)
         #self.TestFrame.StartButton.en
         #self.TestFrame.Destroy()
@@ -125,6 +125,26 @@ def test_if_obfuscated():
         ret="YES"
     pkg_info['obfuscated']=ret
     
+class so_info:
+    def __init__(self,name,size):
+        self.name=name
+        self.size= size
+        
+def search_NDK_so():
+    global basic_info,pkg_info
+    path=basic_info['work_dir']+"\\lib\\armeabi\\"
+
+    lst_so_file = os.listdir(path)
+    lst_so=[]
+    for so in lst_so_file:
+        so_file_path=path+so
+        size,unit= count_file_size(so_file_path)
+        s =so_info(so,str(size)+unit)
+        lst_so.append(s)
+    pkg_info['lst_so']=lst_so
+    pkg_info['len_lst_so'] = len(lst_so)
+    return True
+    #sys.exit()
 def main():
     (result,info) = valid_arg()
     if not result:
@@ -223,6 +243,8 @@ def parse_AndroidManifest_xml(path_AndroidManifest_xml):
 
     node=root.getElementsByTagName("application")[0]
     debuggable= node.getAttribute("android:debuggable")
+    if len(string.strip(debuggable, " ")) == 0:
+        debuggable="NO"
     pkg_info['debuggable']=debuggable
     print pkg_info
     return True
@@ -247,7 +269,7 @@ def parse_strings_xml(path_string_xml):
     lst_string =  resources.getElementsByTagName("string")
     global strings
     for node in lst_string:
-        print node 
+        #print node 
         #print "Element text:%s"% get_text(node)            
         if node.nodeType == xml.dom.Node.ELEMENT_NODE:
             #print 'Element name: %s' % node.nodeName
