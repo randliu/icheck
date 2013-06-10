@@ -142,9 +142,9 @@
 </table>
 
 
-
-<strong>NDK</strong>	
 <p/>
+<strong>NDK - arm</strong>	
+
 <table cellspacing="0" id="invoiceitemstable" align="center">
 	<tr>
 		<td id="invoiceitemsheading" align="center" width="70%" style="border:1px solid #cccccc;border-bottom:0px;">
@@ -154,7 +154,7 @@
 			<strong>大小</strong>
 		</td>
 	</tr>
-	{% for so in pkg.lst_so %}
+	{% for so in pkg.lst_arm_so %}
 	<tr bgcolor=#ffffff>
 		<td id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;">{{so.name}}</td>
 		<td align="center" id="invoiceitemsrow" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
@@ -168,7 +168,7 @@
 		</td>
 		
 		<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-left:0px;">
-			<strong>{{pkg.len_lst_so }}项</strong>
+			<strong>{{pkg.len_lst_arm_so }}项</strong>
 		</td>
 	</tr>
 </table>

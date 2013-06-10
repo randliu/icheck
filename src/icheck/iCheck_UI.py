@@ -11,12 +11,20 @@ class LogFrame(wx.Frame):
         wx.Frame.__init__(self, parent = None, id = -1, title = "iCheck it!", pos=(250, 50), size=(460,600), style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.MINIMIZE_BOX)
         panel = wx.Panel(self)
 
-        self.StartButton = wx.Button(parent = panel, id = -1, label = "Open Dir", pos = (380, 540), size = (60, 20))
+        self.StartButton = wx.Button(parent = panel, id = -1, label = "Open Dir", pos = (280, 540), size = (60, 20))
+        self.CloseButton = wx.Button(parent = panel, id = -1, label = "Close", pos = (380, 540), size = (60, 20))
+        
         self.MultiLine = wx.TextCtrl(parent = panel, id = -1, pos = (20, 20), size = (410, 500), style = wx.TE_MULTILINE|wx.TE_READONLY|wx.TE_AUTO_URL)
 
         self.Bind(wx.EVT_BUTTON, self.on_open, self.StartButton)
+        self.Bind(wx.EVT_BUTTON, self.on_close, self.CloseButton)
         #self.LongRunning()
         self.StartButton.Disable()
+        
+    def on_close(self,event):
+        sys.exit()
+        pass
+    
 
     def on_open(self,event):
         print "event:"+str(event)

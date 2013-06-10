@@ -3,4 +3,4 @@
 
 from iCheck_main import main
 
-#main()
+main()

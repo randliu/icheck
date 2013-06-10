@@ -92,10 +92,8 @@ class TestApp(wx.App):
         #wx.GetApp().ExitMainLoop()
         return True
 
-
-
-def count_file_size(path):
-    file_size=os.path.getsize(full_name)
+def size_to_h(file_size):
+    print "file_size:"+str(file_size)
     unit = "K"
     file_size = file_size>>10   # as K
 
@@ -104,6 +102,13 @@ def count_file_size(path):
         unit = "M"    
     return (file_size,unit)
 
+
+def count_file_size(path):
+    print "path count_file_size:"+path
+    file_size=os.path.getsize(path)
+    (size,unit) = size_to_h(file_size)
+    return (size,unit)
+    
 def test_if_obfuscated():
     #test by if we can foudn r.smil in package path
     
@@ -132,17 +137,18 @@ class so_info:
         
 def search_NDK_so():
     global basic_info,pkg_info
-    path=basic_info['work_dir']+"\\lib\\armeabi\\"
-
-    lst_so_file = os.listdir(path)
-    lst_so=[]
+    arm_path=basic_info['work_dir']+"\\lib\\armeabi\\"
+    print "arm path:"+arm_path
+    lst_so_file = os.listdir(arm_path)
+    lst_arm_so=[]
     for so in lst_so_file:
-        so_file_path=path+so
+        so_file_path=arm_path+so
         size,unit= count_file_size(so_file_path)
         s =so_info(so,str(size)+unit)
-        lst_so.append(s)
-    pkg_info['lst_so']=lst_so
-    pkg_info['len_lst_so'] = len(lst_so)
+        lst_arm_so.append(s)
+    pkg_info['lst_arm_so']=lst_arm_so
+    print "lst_arm_so:"+str(lst_arm_so)
+    pkg_info['len_lst_arm_so'] = len(lst_arm_so)
     return True
     #sys.exit()
 def main():
@@ -274,7 +280,7 @@ def parse_strings_xml(path_string_xml):
         if node.nodeType == xml.dom.Node.ELEMENT_NODE:
             #print 'Element name: %s' % node.nodeName
             for (name, value) in node.attributes.items():
-                print '    Attr -- Name: %s  Value: %s' % (name, value)
+                #print '    Attr -- Name: %s  Value: %s' % (name, value)
                 #name,value = node.attributes.items()
                 #if string.strip(value,' ') == "app_name":
                 """
@@ -342,8 +348,8 @@ def render():
 
 #if __name__ == '__main__':
 #
-
-main()  
+#print "@@"+ __name__
+  
     
     #print "hehe"
     #print work_dir
