@@ -4,4 +4,4 @@ Windows Registry Editor Version 5.00
 @="iCheck It!"
 
 [HKEY_CLASSES_ROOT\*\shell\Open With SublimeText\command]
-@="C:\\iCheck\\iCheck.exe %1"
+@="D:\\iCheck\\iCheck.exe %1"
